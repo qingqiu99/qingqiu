@@ -140,7 +140,7 @@ function go(p){hist.push(pg);pg=p;history.pushState({idx:hist.length},'','#'+p);
 function back(){if(hist.length){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}}
 function updateNav(){document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home'];a.classList.toggle('ac',ps[i]===pg)});document.getElementById('navLogo').textContent=S.name}
 
-function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'gallery':rGallery(c);break}}
+function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'femArticles':rFemArticles(c);break;case'footArticles':rFootArticles(c);break;case'pleasureArticles':rPleasureArticles(c);break;case'gallery':rGallery(c);break}}
 
 function rHome(c){var h='<div class="hero"><img class="hero-avatar" src="images/avatar.jpg" alt="avatar"><div class="desc">'+S.desc+'</div><div class="wavy-line"></div></div><div class="sections">';
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div><div class="row2"><div class="sd">'+s.desc+'</div></div></div>'});
@@ -151,6 +151,18 @@ function rAbout(c){var h='<div class="about"><button class="back" onclick="back(
 function rArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的锁奴培养手册</h1><div class="sub">共 '+A.length+' 篇</div><div class="alist">';A.forEach(function(a){h+='<div class="aitem" onclick="viewA('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
 function viewA(id){var a=A.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewA'+id;history.pushState({idx:hist.length},'','#article'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+
+function rFemArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的女性化塑造手册</h1><div class="sub">共 '+W.length+' 篇</div><div class="alist">';W.forEach(function(a){h+='<div class="aitem" onclick="viewW('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
+
+function viewW(id){var a=W.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewW'+id;history.pushState({idx:hist.length},'','#fem'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+
+function rFootArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>7天足控训练手册</h1><div class="sub">共 '+F.length+' 篇</div><div class="alist">';F.forEach(function(a){h+='<div class="aitem" onclick="viewF('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
+
+function viewF(id){var a=F.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewF'+id;history.pushState({idx:hist.length},'','#foot'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+
+function rPleasureArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>快感提升指南</h1><div class="sub">共 '+P.length+' 篇</div><div class="alist">';P.forEach(function(a){h+='<div class="aitem" onclick="viewP('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
+
+function viewP(id){var a=P.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewP'+id;history.pushState({idx:hist.length},'','#pleasure'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
 
 function rGallery(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>相册</h1><div class="sub">共 '+G.length+' 个相册</div><div class="ggrid">';G.forEach(function(g){h+='<div class="gcard" onclick="viewG('+g.id+')"><img src="'+g.images[0].url+'" alt="'+g.title+'" loading="lazy"><div class="info"><h4>'+g.title+'</h4><p>'+g.date+' &middot; '+g.images.length+' 张</p></div></div>'});h+='</div></div>';c.innerHTML=h}
 

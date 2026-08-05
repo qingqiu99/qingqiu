@@ -25,10 +25,24 @@ var S = {
     },
     {
       icon: '!',
-      title: '相册',
-      desc: '用影像定格每一个值得记住的瞬间。风景、街头、和生活的碎片。',
-      link: '浏览全部相册',
-      page: 'gallery'
+      title: '从零开始的女性化塑造手册',
+      desc: '从外在到内在，逐步重塑你的女性气质。每一个细节都是蜕变的一步。',
+      link: '开始塑造',
+      page: 'femArticles'
+    },
+    {
+      icon: '!',
+      title: '7天足控训练手册',
+      desc: '7天，从零开始觉醒你的足控本能。每一天都是新的调教与领悟。',
+      link: '开始训练',
+      page: 'footArticles'
+    },
+    {
+      icon: '!',
+      title: '快感提升指南',
+      desc: '探索身体的极限，解锁更深层的快感。从技巧到心态，全面进阶。',
+      link: '查看指南',
+      page: 'pleasureArticles'
     }
   ],
 
@@ -114,6 +128,172 @@ var A = [
     id: 9,
     title: '贞操锁-蛋蛋回缩的原因以及解决方案',
     date: '2026-07-02',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  }
+];
+
+// ===== 7天足控训练手册文章列表 =====
+var F = [
+  {
+    id: 1,
+    title: '第一天--认知觉醒',
+    date: '2026-07-01',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 2,
+    title: '第二天--视觉沉浸',
+    date: '2026-06-29',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 3,
+    title: '第三天--触觉启蒙',
+    date: '2026-06-27',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 4,
+    title: '第四天--嗅闻臣服',
+    date: '2026-06-25',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 5,
+    title: '第五天--膜拜仪式',
+    date: '2026-06-23',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 6,
+    title: '第六天--深度服从',
+    date: '2026-06-21',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 7,
+    title: '第七天--完全觉醒',
+    date: '2026-06-19',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  }
+];
+
+// ===== 从零开始的女性化塑造手册文章列表 =====
+var W = [
+  {
+    id: 1,
+    title: '从零开始的女性化塑造手册--前言',
+    date: '2026-07-01',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 2,
+    title: '待解锁',
+    date: '2026-06-29',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 3,
+    title: '待解锁',
+    date: '2026-06-27',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 4,
+    title: '待解锁',
+    date: '2026-06-25',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 5,
+    title: '待解锁',
+    date: '2026-06-23',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 6,
+    title: '待解锁',
+    date: '2026-06-21',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 7,
+    title: '待解锁',
+    date: '2026-06-19',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 8,
+    title: '待解锁',
+    date: '2026-06-17',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 9,
+    title: '待解锁',
+    date: '2026-06-15',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 10,
+    title: '待解锁',
+    date: '2026-06-13',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  }
+];
+
+// ===== 快感提升指南文章列表 =====
+var P = [
+  {
+    id: 1,
+    title: '快感提升指南--前言',
+    date: '2026-07-01',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 2,
+    title: '待解锁',
+    date: '2026-06-29',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 3,
+    title: '待解锁',
+    date: '2026-06-27',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 4,
+    title: '待解锁',
+    date: '2026-06-25',
+    summary: '待补充',
+    content: '<p>待补充</p>'
+  },
+  {
+    id: 5,
+    title: '待解锁',
+    date: '2026-06-23',
     summary: '待补充',
     content: '<p>待补充</p>'
   }
