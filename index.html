@@ -6,11 +6,11 @@
 <title>我的私密空间</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#fff;--t1:#1a1a1a;--t2:#888;--t3:#bbb;--bd:#e8e8e8;--ac:#999;--mw:780px}
+:root{--bg:#fff;--t1:#1a1a1a;--t2:#888;--t3:#bbb;--bd:#e8e8e8;--pk:#e88b9c;--mw:780px}
 body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.8;-webkit-font-smoothing:antialiased}
 
 nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--bd);margin:0 auto;max-width:var(--mw);position:sticky;top:0;background:var(--bg);z-index:100}
-.nlogo{font-size:15px;font-weight:500;color:var(--t1);letter-spacing:.5px}
+.nlogo{font-size:15px;font-weight:500;color:var(--pk);letter-spacing:.5px}
 .nlinks{display:flex;gap:4px}
 .nlinks a{text-decoration:none;padding:6px 14px;border-radius:16px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .2s}
 .nlinks a:hover{color:var(--t1)}
@@ -19,26 +19,26 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 .site{max-width:var(--mw);margin:0 auto;padding:0 24px}
 
 .hero{padding:60px 0 48px}
-.hero .greeting{font-size:34px;font-weight:400;margin-bottom:14px;letter-spacing:1px;line-height:1.3}
+.hero .greeting{font-size:34px;font-weight:400;margin-bottom:14px;letter-spacing:1px;line-height:1.3;color:var(--pk)}
 .hero .desc{font-size:15px;color:var(--t2);max-width:480px;line-height:1.8}
 
 .sections{display:flex;flex-direction:column;margin-bottom:40px}
 
-.sec{display:flex;align-items:baseline;gap:12px;padding:28px 0;border-top:1px solid var(--bd);cursor:pointer;transition:padding .2s;text-decoration:none;color:inherit}
-.sec:hover{padding-left:6px}
+.sec{display:flex;align-items:baseline;gap:12px;padding:28px 0;border-top:1px solid var(--bd);cursor:pointer;transition:all .2s;text-decoration:none;color:inherit}
+.sec:hover{padding-left:6px;border-top-color:var(--pk)}
 .sec .icon{flex-shrink:0;width:18px;height:18px;margin-top:2px;color:var(--t3);font-size:13px;display:flex;align-items:center}
 .sec .body{flex:1}
 .sec .body .st{font-size:16px;font-weight:500;margin-bottom:4px;letter-spacing:.3px;color:var(--t1)}
 .sec .body .sd{font-size:14px;color:var(--t2);line-height:1.6}
-.sec .body .sl{display:inline-block;margin-top:6px;font-size:12px;color:var(--t3);letter-spacing:.3px}
+.sec .body .sl{display:inline-block;margin-top:6px;font-size:12px;color:var(--pk);letter-spacing:.3px}
 
 .page{padding:48px 0 32px}
 .page h1{font-size:28px;font-weight:400;margin-bottom:10px;letter-spacing:.8px}
 .page .sub{font-size:14px;color:var(--t2);margin-bottom:36px}
 
 .alist{display:flex;flex-direction:column;margin-bottom:40px}
-.aitem{padding:22px 0;border-top:1px solid var(--bd);cursor:pointer;transition:padding .2s}
-.aitem:hover{padding-left:6px}
+.aitem{padding:22px 0;border-top:1px solid var(--bd);cursor:pointer;transition:all .2s}
+.aitem:hover{padding-left:6px;border-top-color:var(--pk)}
 .aitem:first-child{border-top:1px solid var(--bd)}
 .aitem h3{font-size:16px;font-weight:500;margin-bottom:4px;letter-spacing:.3px}
 .aitem .meta{font-size:12px;color:var(--t3);margin-bottom:6px}
