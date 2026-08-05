@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+  <rect fill="#8b6b9e" width="800" height="600"/>
+  <rect fill="rgba(0,0,0,0.15)" x="200" y="200" width="400" height="200" rx="20"/>
+  <text x="400" y="285" text-anchor="middle" fill="white" font-size="20" font-family="sans-serif">占位图片</text>
+  <text x="400" y="315" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="sans-serif">黄昏的巷口</text>
+  <text x="400" y="345" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="12" font-family="sans-serif">替换为你的图片</text>
+</svg>
