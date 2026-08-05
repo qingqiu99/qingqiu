@@ -3,51 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的私密空间</title>
+<title>清`秋🎀大小姐</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#fff;--t1:#1a1a1a;--t2:#888;--t3:#bbb;--bd:#e8e8e8;--pk:#e88b9c;--mw:780px}
+:root{--bg:#fff;--t1:#000;--t2:#333;--t3:#999;--bd:#e0e0e0;--pk:#f0b0d8;--mw:780px}
 body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",-apple-system,sans-serif;background:var(--bg);color:var(--t1);line-height:1.8;-webkit-font-smoothing:antialiased}
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--bd);margin:0 auto;max-width:var(--mw);position:sticky;top:0;background:var(--bg);z-index:100}
-.nlogo{font-size:15px;font-weight:500;color:var(--pk);letter-spacing:.5px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:var(--pk);width:100%;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(212,181,226,.35)}
+.nlogo{font-size:15px;font-weight:500;color:#fff;letter-spacing:.5px}
 .nlinks{display:flex;gap:4px}
-.nlinks a{text-decoration:none;padding:6px 14px;border-radius:16px;font-size:13px;color:var(--t2);cursor:pointer;transition:all .2s}
-.nlinks a:hover{color:var(--t1)}
-.nlinks a.ac{color:var(--t1);font-weight:500}
+.nlinks a{text-decoration:none;padding:6px 14px;border-radius:16px;font-size:13px;color:rgba(255,255,255,.75);cursor:pointer;transition:all .2s}
+.nlinks a:hover{color:#fff}
+.nlinks a.ac{color:#fff;font-weight:500}
 
-.site{max-width:var(--mw);margin:0 auto;padding:0 24px}
+.site{width:100%;padding:0 24px}
 
 .hero{padding:60px 0 48px}
+.hero-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;display:block;margin-bottom:18px;box-shadow:0 4px 16px rgba(240,176,216,.3)}
 .hero .greeting{font-size:34px;font-weight:400;margin-bottom:14px;letter-spacing:1px;line-height:1.3;color:var(--pk)}
-.hero .desc{font-size:15px;color:var(--t2);max-width:480px;line-height:1.8}
+.hero .desc{font-size:15px;color:var(--t2);line-height:1.8}
+.wavy-line{height:10px;margin-top:28px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10' viewBox='0 0 60 10'%3E%3Cpath d='M0 5 Q15 0 30 5 T60 5' fill='none' stroke='%23f0b0d8' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:repeat-x;background-size:60px 10px}
 
 .sections{display:flex;flex-direction:column;margin-bottom:40px}
 
-.sec{display:flex;align-items:baseline;gap:12px;padding:28px 0;border-top:1px solid var(--bd);cursor:pointer;transition:all .2s;text-decoration:none;color:inherit}
-.sec:hover{padding-left:6px;border-top-color:var(--pk)}
-.sec .icon{flex-shrink:0;width:18px;height:18px;margin-top:2px;color:var(--t3);font-size:13px;display:flex;align-items:center}
-.sec .body{flex:1}
-.sec .body .st{font-size:16px;font-weight:500;margin-bottom:4px;letter-spacing:.3px;color:var(--t1)}
-.sec .body .sd{font-size:14px;color:var(--t2);line-height:1.6}
-.sec .body .sl{display:inline-block;margin-top:6px;font-size:12px;color:var(--pk);letter-spacing:.3px}
+.sections{display:flex;flex-direction:column;margin-bottom:40px}
+
+.sec{display:flex;flex-direction:column;padding:24px 0;border-top:1px solid var(--bd);cursor:pointer;transition:all .2s;text-decoration:none;color:inherit}
+.sec:hover{background:rgba(240,176,216,.04)}
+.sec:first-of-type{border-top:none}
+
+.sec .row1{display:flex;align-items:center;justify-content:space-between}
+.sec .row1 .left{display:flex;align-items:center;gap:10px}
+.sec .row1 .icn{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:#3b82f6;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sec .row1 .st{font-size:16px;font-weight:500;letter-spacing:.3px;color:var(--t1)}
+.sec .row1 .btn{flex-shrink:0;padding:6px 18px;border-radius:20px;background:var(--t1);color:#fff;font-size:13px;font-weight:500;letter-spacing:.3px;cursor:pointer;border:none;font-family:inherit}
+.sec .row2{margin-top:8px;padding-left:30px}
+.sec .row2 .sd{font-size:14px;color:var(--t2);line-height:1.6;text-decoration:underline;text-decoration-color:var(--t2);text-underline-offset:3px}
 
 .page{padding:48px 0 32px}
 .page h1{font-size:28px;font-weight:400;margin-bottom:10px;letter-spacing:.8px}
 .page .sub{font-size:14px;color:var(--t2);margin-bottom:36px}
 
-.alist{display:flex;flex-direction:column;margin-bottom:40px}
-.aitem{padding:22px 0;border-top:1px solid var(--bd);cursor:pointer;transition:all .2s}
-.aitem:hover{padding-left:6px;border-top-color:var(--pk)}
-.aitem:first-child{border-top:1px solid var(--bd)}
-.aitem h3{font-size:16px;font-weight:500;margin-bottom:4px;letter-spacing:.3px}
-.aitem .meta{font-size:12px;color:var(--t3);margin-bottom:6px}
-.aitem .sum{font-size:14px;color:var(--t2);line-height:1.7}
+.alist{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:40px}
+.aitem{display:inline-block;padding:8px 22px;border-radius:20px;background:var(--t1);color:#fff;font-size:14px;font-weight:500;letter-spacing:.3px;cursor:pointer;margin:4px 6px;border:none;transition:all .2s}
+.aitem:hover{background:var(--pk)}
 
 .adetail{padding:48px 0}
-.adetail .back{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--t2);cursor:pointer;border:none;background:none;font-family:inherit;padding:0;margin-bottom:36px;letter-spacing:.3px;transition:color .2s}
-.adetail .back:hover{color:var(--t1)}
-.adetail article{max-width:600px}
+.back{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--t2);cursor:pointer;border:none;background:none;font-family:inherit;padding:0;margin-bottom:28px;letter-spacing:.3px;transition:color .2s}
+.back:hover{color:var(--t1)}
+.adetail article{}
 .adetail article h1{font-size:28px;font-weight:400;margin-bottom:8px;line-height:1.4;letter-spacing:.8px}
 .adetail article .dm{font-size:13px;color:var(--t3);margin-bottom:36px}
 .adetail article .ct{font-size:15px;line-height:2;color:var(--t1)}
@@ -65,8 +69,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 .gcard .info p{font-size:12px;color:var(--t2)}
 
 .gdetail{padding:48px 0}
-.gdetail .back{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:var(--t2);cursor:pointer;border:none;background:none;font-family:inherit;padding:0;margin-bottom:36px;letter-spacing:.3px;transition:color .2s}
-.gdetail .back:hover{color:var(--t1)}
 .gdetail h1{font-size:28px;font-weight:400;margin-bottom:8px;letter-spacing:.8px}
 .gdetail .dm{font-size:13px;color:var(--t3);margin-bottom:6px}
 .gdetail .gdesc{font-size:14px;color:var(--t2);margin-bottom:32px;line-height:1.8;max-width:520px}
@@ -77,7 +79,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 
 .about{padding:48px 0}
 .about h1{font-size:28px;font-weight:400;margin-bottom:24px;letter-spacing:.8px}
-.about .content{max-width:540px;font-size:15px;line-height:2}
+.about .content{font-size:15px;line-height:2}
 .about .content p{margin-bottom:20px}
 
 .socials{display:flex;gap:20px;margin-top:36px;padding-top:28px;border-top:1px solid var(--bd)}
@@ -113,17 +115,14 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
   <span class="nlogo" id="navLogo">我的空间</span>
   <div class="nlinks" id="navLinks">
     <a class="ac" onclick="go('home')">首页</a>
-    <a onclick="go('about')">关于</a>
-    <a onclick="go('articles')">文章</a>
-    <a onclick="go('gallery')">相册</a>
   </div>
 </nav>
 
 <div class="site" id="site">
   <div id="pc"></div>
   <footer class="ft">
-    <span id="footerLeft">私密空间</span>
-    <span id="footerRight">仅授权访问</span>
+    <span id="footerLeft">清`秋🎀大小姐</span>
+    <span id="footerRight">个人主页</span>
   </footer>
 </div>
 
@@ -135,28 +134,33 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 
 <script src="data.js"></script>
 <script>
-var pg='home';
+var pg='home',hist=[];
 
-function go(p){pg=p;document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home','about','articles','gallery'];a.classList.toggle('ac',ps[i]===p)});render();window.scrollTo({top:0,behavior:'instant'})}
+function go(p){hist.push(pg);pg=p;history.pushState({idx:hist.length},'','#'+p);updateNav();render();window.scrollTo({top:0,behavior:'instant'})}
+function back(){if(hist.length){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}}
+function updateNav(){document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home'];a.classList.toggle('ac',ps[i]===pg)});document.getElementById('navLogo').textContent=S.name}
 
 function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'gallery':rGallery(c);break}}
 
-function rHome(c){var h='<div class="hero"><div class="greeting">'+S.greeting+'</div><div class="desc">'+S.desc+'</div></div><div class="sections">';
-S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="icon">'+s.icon+'</div><div class="body"><div class="st">'+s.title+'</div><div class="sd">'+s.desc+'</div><div class="sl">'+s.link+'</div></div></div>'});
+function rHome(c){var h='<div class="hero"><img class="hero-avatar" src="images/avatar.jpg" alt="avatar"><div class="desc">'+S.desc+'</div><div class="wavy-line"></div></div><div class="sections">';
+S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div><div class="row2"><div class="sd">'+s.desc+'</div></div></div>'});
 h+='</div>';c.innerHTML=h}
 
-function rAbout(c){var h='<div class="about"><h1>关于</h1><div class="content">'+S.about+'</div>';if(S.socials&&S.socials.length){h+='<div class="socials">';S.socials.forEach(function(s){h+='<a href="'+s.url+'" target="_blank" rel="noopener">'+s.name+'</a>'});h+='</div>'}h+='</div>';c.innerHTML=h}
+function rAbout(c){var h='<div class="about"><button class="back" onclick="back()">\u2190 返回</button><h1>关于</h1><div class="content">'+S.about+'</div>';if(S.socials&&S.socials.length){h+='<div class="socials">';S.socials.forEach(function(s){h+='<a href="'+s.url+'" target="_blank" rel="noopener">'+s.name+'</a>'});h+='</div>'}h+='</div>';c.innerHTML=h}
 
-function rArticles(c){var h='<div class="page"><h1>文章</h1><div class="sub">共 '+A.length+' 篇</div><div class="alist">';A.forEach(function(a){h+='<div class="aitem" onclick="viewA('+a.id+')"><h3>'+a.title+'</h3><div class="meta">'+a.date+'</div><div class="sum">'+a.summary+'</div></div>'});h+='</div></div>';c.innerHTML=h}
+function rArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的锁奴培养手册</h1><div class="sub">共 '+A.length+' 篇</div><div class="alist">';A.forEach(function(a){h+='<div class="aitem" onclick="viewA('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewA(id){var a=A.find(function(x){return x.id===id});if(!a)return;document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="go(\'articles\')">\u2190 返回文章</button><article><h1>'+a.title+'</h1><div class="dm">'+a.date+'</div><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+function viewA(id){var a=A.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewA'+id;history.pushState({idx:hist.length},'','#article'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
 
-function rGallery(c){var h='<div class="page"><h1>相册</h1><div class="sub">共 '+G.length+' 个相册</div><div class="ggrid">';G.forEach(function(g){h+='<div class="gcard" onclick="viewG('+g.id+')"><img src="'+g.images[0].url+'" alt="'+g.title+'" loading="lazy"><div class="info"><h4>'+g.title+'</h4><p>'+g.date+' &middot; '+g.images.length+' 张</p></div></div>'});h+='</div></div>';c.innerHTML=h}
+function rGallery(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>相册</h1><div class="sub">共 '+G.length+' 个相册</div><div class="ggrid">';G.forEach(function(g){h+='<div class="gcard" onclick="viewG('+g.id+')"><img src="'+g.images[0].url+'" alt="'+g.title+'" loading="lazy"><div class="info"><h4>'+g.title+'</h4><p>'+g.date+' &middot; '+g.images.length+' 张</p></div></div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewG(id){var g=G.find(function(x){return x.id===id});if(!g)return;document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');var h='<div class="gdetail"><button class="back" onclick="go(\'gallery\')">\u2190 返回相册</button><h1>'+g.title+'</h1><div class="dm">'+g.date+' &middot; '+g.images.length+' 张照片</div><div class="gdesc">'+g.description+'</div><div class="gimg">';g.images.forEach(function(img){h+='<div class="gi" onclick="event.stopPropagation();openLb(\''+img.url+'\',\''+(img.caption||'')+'\')"><img src="'+img.url+'" alt="'+(img.caption||'')+'" loading="lazy"></div>'});h+='</div></div>';c.innerHTML=h}
+function viewG(id){var g=G.find(function(x){return x.id===id});if(!g)return;hist.push(pg);pg='viewG'+id;history.pushState({idx:hist.length},'','#gallery'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');var h='<div class="gdetail"><button class="back" onclick="back()">\u2190 返回</button><h1>'+g.title+'</h1><div class="dm">'+g.date+' &middot; '+g.images.length+' 张照片</div><div class="gdesc">'+g.description+'</div><div class="gimg">';g.images.forEach(function(img){h+='<div class="gi" onclick="event.stopPropagation();openLb(\''+img.url+'\',\''+(img.caption||'')+'\')"><img src="'+img.url+'" alt="'+(img.caption||'')+'" loading="lazy"></div>'});h+='</div></div>';c.innerHTML=h}
 
 function openLb(url,cap){document.getElementById('lbi').src=url;document.getElementById('lbc').textContent=cap||'';document.getElementById('lb').classList.add('op')}
 function closeLb(){document.getElementById('lb').classList.remove('op')}
+
+history.replaceState({idx:0},'','#home');
+window.addEventListener('popstate',function(e){if(hist.length>0){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}});
 
 render();
 </script>
