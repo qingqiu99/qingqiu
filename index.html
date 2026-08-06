@@ -65,6 +65,7 @@ nav{display:none}
 .links-page .links-inner{display:flex;flex-direction:column;gap:12px}
 .links-page .links-inner a{display:flex;justify-content:center}
 .links-page .links-inner .xbtn,.links-page .links-inner .tgbtn,.links-page .links-inner .adbtn,.links-page .links-inner .livebtn{justify-content:center}
+.links-section-title{font-size:20px;font-weight:600;margin:20px 0 14px;text-align:center;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 .sections{display:flex;flex-direction:column;margin-bottom:40px}
 
@@ -194,13 +195,15 @@ function go(p){hist.push(pg);pg=p;history.pushState({idx:hist.length},'','#'+p);
 function back(){if(hist.length){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}}
 function updateNav(){document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home'];a.classList.toggle('ac',ps[i]===pg)});document.getElementById('navLogo').textContent=S.name}
 
-function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'links':rLinks(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'femArticles':rFemArticles(c);break;case'footArticles':rFootArticles(c);break;case'pleasureArticles':rPleasureArticles(c);break;case'gallery':rGallery(c);break}}
+function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'links':rLinks(c);break;case'advert':rAdvert(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'femArticles':rFemArticles(c);break;case'footArticles':rFootArticles(c);break;case'pleasureArticles':rPleasureArticles(c);break;case'gallery':rGallery(c);break}}
 
 function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><img class="hero-avatar" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc">'+S.desc+'</div></div><div class="sec-header">关于清秋大小姐</div><div class="sec" style="display:flex;justify-content:center;align-items:center;cursor:default" onclick="event.stopPropagation()"><a class="tribute-btn" href="javascript:void(0)" onclick="event.stopPropagation();go(\'links\')">联系/上贡</a></div><div class="sec-header">清秋大小姐的手册</div><div class="sections">';
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});
 h+='</div>';c.innerHTML=h}
 
-function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>关于清秋大小姐</h1><div class="link-card"><div class="links-inner"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="adbtn" href="https://veratm.vercel.app/" target="_blank"><img src="images/23435ar.jpg" alt="AD" class="adicon">成为清秋大小姐的广告牌</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a></div></div></div>';c.innerHTML=h}
+function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的账号</h1><div class="link-card"><div class="links-inner"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a><div class="links-section-title">向清秋大小姐上贡</div><a class="adbtn" href="javascript:void(0)" onclick="go(\'advert\')"><img src="images/23435ar.jpg" alt="AD" class="adicon">贡奴白给协议 推特账号剥夺（成为清秋大小姐的广告牌）</a></div></div></div>';c.innerHTML=h}
+
+function rAdvert(c){var h='<div class="about"><button class="back" onclick="back()">\u2190 返回</button><h1>贡奴白给协议 推特账号剥夺（贡奴白给协议 推特账号剥夺（成为清秋大小姐的广告牌））</h1><div class="content"><p>内容待编辑...</p></div></div>';c.innerHTML=h}
 
 function rAbout(c){var h='<div class="about"><button class="back" onclick="back()">\u2190 返回</button><h1>关于</h1><div class="content">'+S.about+'</div>';if(S.socials&&S.socials.length){h+='<div class="socials">';S.socials.forEach(function(s){h+='<a href="'+s.url+'" target="_blank" rel="noopener">'+s.name+'</a>'});h+='</div>'}h+='</div>';c.innerHTML=h}
 
