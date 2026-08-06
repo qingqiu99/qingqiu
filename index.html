@@ -49,14 +49,17 @@ nav{display:none}
 .adicon{width:22px;height:22px;object-fit:cover;display:block;border-radius:50%}
 .livebtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
 .livebtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
+.ptbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
+.ptbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .liveicon{width:22px;height:22px;object-fit:contain;display:block}
+.pticon{width:22px;height:22px;object-fit:contain;display:block}
 .wavy-line{display:none}
 
 .links-page .link-card{padding:24px}
 .links-page h1{font-size:24px;font-weight:600;margin-bottom:28px;text-align:center;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .links-page .links-inner{display:flex;flex-direction:column;gap:12px}
 .links-page .links-inner a{display:flex;justify-content:center}
-.links-page .links-inner .xbtn,.links-page .links-inner .tgbtn,.links-page .links-inner .adbtn,.links-page .links-inner .livebtn{justify-content:center}
+.links-page .links-inner .xbtn,.links-page .links-inner .tgbtn,.links-page .links-inner .adbtn,.links-page .links-inner .livebtn,.links-page .links-inner .ptbtn{justify-content:center}
 .links-section-title{font-size:20px;font-weight:600;margin:20px 0 14px;text-align:center;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 .sections{display:flex;flex-direction:column;margin-bottom:40px}
@@ -190,11 +193,11 @@ function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀�
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});
 h+='</div>';c.innerHTML=h}
 
-function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的账号</h1><div class="link-card"><div class="links-inner"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a><div class="links-section-title">向清秋大小姐上贡</div><a class="adbtn" href="javascript:void(0)" onclick="go(\'advert\')"><img src="images/23435ar.jpg" alt="AD" class="adicon">贡奴白给协议 推特账号剥夺（成为清秋大小姐的广告牌）</a></div></div></div>';c.innerHTML=h}
+function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的账号</h1><div class="link-card"><div class="links-inner"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="ptbtn" href="https://www.patreon.com/cw/qingqiu9999" target="_blank"><img src="images/patreon-icon.png" alt="P" class="pticon">Patreon</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a><div class="links-section-title">贡奴白给协议</div><a class="adbtn" href="javascript:void(0)" onclick="go(\'advert\')"><img src="images/23435ar.jpg" alt="AD" class="adicon">推特账号剥夺（成为清秋大小姐的广告牌）</a></div></div></div>';c.innerHTML=h}
 
 function rAdvert(c){
   var h = `<div class="about"><button class="back" onclick="back()">\u2190 返回</button>
-<h1>贡奴白给协议 推特账号剥夺（成为清秋大小姐的广告牌）</h1>
+<h1>推特账号剥夺（成为清秋大小姐的广告牌）</h1>\n<img src="images/photo_2026-08-06_16-33-32.jpg" alt="Advert" style="max-width:100%;border-radius:12px;margin:0 auto 20px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.15)">
 <div class="content">
 <p>又忍不住点进来了吧下贱白给贡奴！！！</p>
 <p>就是喜欢被压迫，喜欢被剥夺金钱，喜欢被射精管理的恶心变态！！！</p>
@@ -226,7 +229,7 @@ function rAdvert(c){
 <p>看完的话，那么就请你继续在复习一边，并自慰达到寸止</p>
 <p>然后保存清秋女神的赞赏码，吐钱后点击下面的链接</p>
 <p>授权上交账号后，直到看到自己的主页，才配（射精）知道吗！！！白痴ATM机！！！</p>
-<p>点击授权签署</p>
+<div style="text-align:center;margin-top:24px"><a class="tribute-btn" href="https://veratm.vercel.app/" target="_blank">点击授权签署</a></div>
 </div></div>`;
   c.innerHTML = h;
 }
