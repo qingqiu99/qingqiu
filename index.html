@@ -44,7 +44,7 @@ nav{display:none}
 .tgbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .xicon{width:20px;height:20px;object-fit:contain;display:block}
 .tgicon{width:22px;height:22px;object-fit:contain;display:block}
-.adbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
+.adbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap}
 .adbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .adicon{width:22px;height:22px;object-fit:cover;display:block;border-radius:50%}
 .livebtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
@@ -60,6 +60,8 @@ nav{display:none}
 .links-page .links-inner{display:flex;flex-direction:column;gap:12px}
 .links-page .links-inner a{display:flex;justify-content:center}
 .links-page .links-inner .xbtn,.links-page .links-inner .tgbtn,.links-page .links-inner .adbtn,.links-page .links-inner .livebtn,.links-page .links-inner .ptbtn{justify-content:center}
+.links-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.links-row a{margin-top:0}
 .links-section-title{font-size:20px;font-weight:600;margin:20px 0 14px;text-align:center;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 .sections{display:flex;flex-direction:column;margin-bottom:40px}
@@ -193,7 +195,7 @@ function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀�
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});
 h+='</div>';c.innerHTML=h}
 
-function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的账号</h1><div class="link-card"><div class="links-inner"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="ptbtn" href="https://www.patreon.com/cw/qingqiu9999" target="_blank"><img src="images/patreon-icon.png" alt="P" class="pticon">Patreon</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a><div class="links-section-title">贡奴白给协议</div><a class="adbtn" href="javascript:void(0)" onclick="go(\'advert\')"><img src="images/23435ar.jpg" alt="AD" class="adicon">推特账号剥夺（成为清秋大小姐的广告牌）</a></div></div></div>';c.innerHTML=h}
+function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的账号</h1><div class="link-card"><div class="links-inner"><div class="links-row"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a></div><div class="links-row"><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="ptbtn" href="https://www.patreon.com/cw/qingqiu9999" target="_blank"><img src="images/patreon-icon.png" alt="P" class="pticon">Patreon</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a></div><div class="links-section-title">贡奴白给协议</div><a class="adbtn" href="javascript:void(0)" onclick="go(\'advert\')"><img src="images/23435ar.jpg" alt="AD" class="adicon">推特账号剥夺（成为清秋大小姐的广告牌）</a></div></div></div>';c.innerHTML=h}
 
 function rAdvert(c){
   var h = `<div class="about"><button class="back" onclick="back()">\u2190 返回</button>
