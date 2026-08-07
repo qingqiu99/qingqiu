@@ -294,5 +294,46 @@ window.addEventListener('popstate',function(e){if(hist.length>0){pg=hist.pop();u
 
 render();
 </script>
+<audio id="bgm" preload="auto"></audio>
+<div style="position:fixed;top:16px;right:16px;z-index:999;display:flex;align-items:center;gap:8px">
+<div id="bgmPlayBtn" onclick="toggleBgm()" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);box-shadow:0 2px 12px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none">
+<svg id="bgmIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f0b0d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+</div>
+<div id="bgmSwapBtn" onclick="randomBgm()" style="padding:6px 18px;border-radius:50px;background:#7EC8E3;color:#fff;font-size:13px;font-weight:500;letter-spacing:.3px;cursor:pointer;user-select:none;white-space:nowrap;transition:all .2s" onmouseenter="this.style.background='var(--pk)';this.style.animation='shake .3s ease-in-out'" onmouseleave="this.style.background='#7EC8E3';this.style.animation='none'">随机换曲</div>
+</div>
+<script>
+var bgmList=['images/bgm1.m4a','images/bgm2.m4a'];
+var bgmEl=document.getElementById('bgm');
+var bgmPlayBtn=document.getElementById('bgmPlayBtn');
+var bgmIcon=document.getElementById('bgmIcon');
+var bgmPlaying=false;
+var bgmBlocked=false;
+function pickBgm(){return bgmList[Math.floor(Math.random()*bgmList.length)]}
+function setPlayState(p){bgmPlaying=p;if(p){bgmIcon.style.stroke='#7EC8E3';bgmPlayBtn.style.animation='spin 3s linear infinite'}else{bgmIcon.style.stroke='#f0b0d8';bgmPlayBtn.style.animation='none'}}
+function playBgm(){bgmEl.src=pickBgm();bgmEl.volume=0.4;bgmEl.play().then(function(){setPlayState(true);hideOverlay()}).catch(function(e){setPlayState(false);if(e.name==='NotAllowedError'){showOverlay()}})}
+function randomBgm(){bgmBlocked=false;playBgm()}
+function toggleBgm(){if(bgmPlaying){bgmEl.pause();setPlayState(false)}else{bgmEl.play().then(function(){setPlayState(true)}).catch(function(){})}}
+bgmEl.addEventListener('ended',function(){if(!bgmBlocked)playBgm()});
+
+// 浏览器拦截自动播放时显示遮罩
+var overlayEl=null;
+function showOverlay(){
+  bgmBlocked=true;
+  if(overlayEl)return;
+  overlayEl=document.createElement('div');
+  overlayEl.id='bgmOverlay';
+  overlayEl.innerHTML='<div style="background:rgba(0,0,0,.55);border-radius:20px;padding:32px 40px;text-align:center;color:#fff;backdrop-filter:blur(20px)"><div style="font-size:40px;margin-bottom:12px">🎵</div><div style="font-size:16px;font-weight:600;margin-bottom:6px">点击任意位置开始播放音乐</div><div style="font-size:13px;opacity:.7">浏览器需要用户交互后才能播放音频</div></div>';
+  overlayEl.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer';
+  overlayEl.onclick=function(e){e.stopPropagation();hideOverlay();playBgm()};
+  document.body.appendChild(overlayEl);
+}
+function hideOverlay(){
+  bgmBlocked=false;
+  if(overlayEl){overlayEl.remove();overlayEl=null}
+}
+playBgm();
+
+var styleEl=document.createElement('style');styleEl.textContent='@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}';document.head.appendChild(styleEl);
+</script>
 </body>
 </html>
