@@ -139,6 +139,10 @@ nav{display:none}
 .ft a{color:var(--t3);text-decoration:none;transition:color .2s}
 .ft a:hover{color:var(--t1)}
 
+/* scroll reveal */
+.anim-fade{opacity:0;transform:translateY(16px);transition:opacity .5s ease-out,transform .5s ease-out;will-change:transform,opacity}
+.anim-fade.anim-show{opacity:1;transform:translateY(0)}
+
 @media(max-width:640px){
 .site{padding:0 16px}
 .hero{padding:40px 0 36px}
@@ -189,7 +193,31 @@ function go(p){hist.push(pg);pg=p;history.pushState({idx:hist.length},'','#'+p);
 function back(){if(hist.length){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}}
 function updateNav(){document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home'];a.classList.toggle('ac',ps[i]===pg)});document.getElementById('navLogo').textContent=S.name}
 
-function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'links':rLinks(c);break;case'advert':rAdvert(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'femArticles':rFemArticles(c);break;case'footArticles':rFootArticles(c);break;case'pleasureArticles':rPleasureArticles(c);break;case'gallery':rGallery(c);break}}
+function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'links':rLinks(c);break;case'advert':rAdvert(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'femArticles':rFemArticles(c);break;case'footArticles':rFootArticles(c);break;case'pleasureArticles':rPleasureArticles(c);break;case'gallery':rGallery(c);break}requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
+
+var animObs;
+function observeAnims(){
+  if(animObs)animObs.disconnect();
+  var pc=document.getElementById('pc'),seen=new Set(),els=[];
+  function add(el){if(!seen.has(el)){seen.add(el);els.push(el)}}
+  // Level 1-2: page sections and their direct children
+  Array.from(pc.children).forEach(function(section){
+    Array.from(section.children).forEach(add);
+  });
+  // Level 3: items inside grid/list containers + article content
+  pc.querySelectorAll('.sections .sec,.alist .aitem,.ggrid .gcard,.gimg .gi,.links-row,.links-section-title,.adbtn,.ct > *,.content > *').forEach(add);
+  
+  animObs=new IntersectionObserver(function(es){
+    var batch=[];
+    es.forEach(function(e){if(e.isIntersecting){batch.push(e.target);animObs.unobserve(e.target)}});
+    if(batch.length){
+      requestAnimationFrame(function(){
+        batch.forEach(function(el,i){el.style.transitionDelay=(i*.03)+'s';el.classList.add('anim-show')})
+      })
+    }
+  },{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+  els.forEach(function(el){el.classList.add('anim-fade');animObs.observe(el)})
+}
 
 function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><img class="hero-avatar" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc">'+S.desc+'</div></div><div class="sec-header">关于清秋大小姐</div><div class="sec" style="display:flex;justify-content:center;align-items:center;cursor:default" onclick="event.stopPropagation()"><a class="tribute-btn" href="javascript:void(0)" onclick="event.stopPropagation();go(\'links\')">联系/上贡</a></div><div class="sec-header">清秋大小姐的手册</div><div class="sections">';
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});
@@ -240,23 +268,23 @@ function rAbout(c){var h='<div class="about"><button class="back" onclick="back(
 
 function rArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的锁奴培养手册</h1><div class="sub">共 '+A.length+' 篇</div><div class="alist">';A.forEach(function(a){h+='<div class="aitem" onclick="viewA('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewA(id){var a=A.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewA'+id;history.pushState({idx:hist.length},'','#article'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+function viewA(id){var a=A.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewA'+id;history.pushState({idx:hist.length},'','#article'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function rFemArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的女性化塑造手册</h1><div class="sub">共 '+W.length+' 篇</div><div class="alist">';W.forEach(function(a){h+='<div class="aitem" onclick="viewW('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewW(id){var a=W.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewW'+id;history.pushState({idx:hist.length},'','#fem'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+function viewW(id){var a=W.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewW'+id;history.pushState({idx:hist.length},'','#fem'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function rFootArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>7天足控训练手册</h1><div class="sub">共 '+F.length+' 篇</div><div class="alist">';F.forEach(function(a){h+='<div class="aitem" onclick="viewF('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewF(id){var a=F.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewF'+id;history.pushState({idx:hist.length},'','#foot'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+function viewF(id){var a=F.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewF'+id;history.pushState({idx:hist.length},'','#foot'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function rPleasureArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>快感提升指南</h1><div class="sub">共 '+P.length+' 篇</div><div class="alist">';P.forEach(function(a){h+='<div class="aitem" onclick="viewP('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewP(id){var a=P.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewP'+id;history.pushState({idx:hist.length},'','#pleasure'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'})}
+function viewP(id){var a=P.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewP'+id;history.pushState({idx:hist.length},'','#pleasure'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function rGallery(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>相册</h1><div class="sub">共 '+G.length+' 个相册</div><div class="ggrid">';G.forEach(function(g){h+='<div class="gcard" onclick="viewG('+g.id+')"><img src="'+g.images[0].url+'" alt="'+g.title+'" loading="lazy"><div class="info"><h4>'+g.title+'</h4><p>'+g.date+' &middot; '+g.images.length+' 张</p></div></div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewG(id){var g=G.find(function(x){return x.id===id});if(!g)return;hist.push(pg);pg='viewG'+id;history.pushState({idx:hist.length},'','#gallery'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');var h='<div class="gdetail"><button class="back" onclick="back()">\u2190 返回</button><h1>'+g.title+'</h1><div class="dm">'+g.date+' &middot; '+g.images.length+' 张照片</div><div class="gdesc">'+g.description+'</div><div class="gimg">';g.images.forEach(function(img){h+='<div class="gi" onclick="event.stopPropagation();openLb(\''+img.url+'\',\''+(img.caption||'')+'\')"><img src="'+img.url+'" alt="'+(img.caption||'')+'" loading="lazy"></div>'});h+='</div></div>';c.innerHTML=h}
+function viewG(id){var g=G.find(function(x){return x.id===id});if(!g)return;hist.push(pg);pg='viewG'+id;history.pushState({idx:hist.length},'','#gallery'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');var h='<div class="gdetail"><button class="back" onclick="back()">\u2190 返回</button><h1>'+g.title+'</h1><div class="dm">'+g.date+' &middot; '+g.images.length+' 张照片</div><div class="gdesc">'+g.description+'</div><div class="gimg">';g.images.forEach(function(img){h+='<div class="gi" onclick="event.stopPropagation();openLb(\''+img.url+'\',\''+(img.caption||'')+'\')"><img src="'+img.url+'" alt="'+(img.caption||'')+'" loading="lazy"></div>'});h+='</div></div>';c.innerHTML=h;requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function openLb(url,cap){document.getElementById('lbi').src=url;document.getElementById('lbc').textContent=cap||'';document.getElementById('lb').classList.add('op')}
 function closeLb(){document.getElementById('lb').classList.remove('op')}
