@@ -201,12 +201,15 @@ var A = [
 <p>所以你要做到打扰，但不惊动的状态，让本小姐好好享受你的服侍❤️</p>
 <hr>
 <h2>鞋底清理技巧：</h2>
+<img src="images/photo_2026-08-07_12-42-50.jpg" alt="" style="max-width:100%;border-radius:12px;margin:0 0 24px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.1)">
 <p>1.将鞋底划分区域（鞋底区，鞋跟斜坡区，鞋跟区）从上到下进行</p>
 <p>2.红色箭头是第一次清洁的舔舐方向，白色箭头是第二次清洁方向</p>
 <p>3.把第二步重复30-50次，如果鞋底粘的有很顽固的污渍，则配合牙齿轻轻啃刮</p>
 <p>4.在感觉舌头舔黑后，应该用牙齿把舌头刮干净，脏东西咽下去后再继续</p>
 <p>5.针对鞋底有浅浅纹路的鞋底，应适当调整舌头位置，卖力清理纹路中的污渍</p>
-<p>6.清理鞋底的过程中，严禁舌头碰到鞋底以外的位置</p>`
+<p>6.清理鞋底的过程中，严禁舌头碰到鞋底以外的位置</p>
+<img src="images/photo_2026-08-07_12-42-54.jpg" alt="" style="max-width:100%;border-radius:12px;margin:0 0 24px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.1)">
+`
   },
   {
     id: 6,
@@ -248,6 +251,7 @@ var A = [
 <p>2.轻吻是服侍的第一步♡从正面脚背处开始到脚趾区，再由脚趾区轻吻至脚跟区♡</p>
 <hr>
 <p><strong>脚趾区：</strong></p>
+<img src="images/photo_2026-08-07_12-36-55.jpg" alt="" style="max-width:100%;border-radius:12px;margin:0 0 24px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.1)">
 <p>1.（青蓝色）从脚趾区开始，将舌头伸进本小姐的脚趾缝清理干净污渍与脚泥，每个缝隙都要来回清理8-10次确保干净♡</p>
 <p>2.（紫色）用嘴巴含住单独的每一根脚趾，用舌头顺逆时针各舔舐5次，最后吮吸出脚趾的污渍，直到清理完10根脚趾♡</p>
 <p>3.重复1和2（2个来回），享受服侍脚趾区的欲望与快感，以轻吻表示脚趾区服侍完成汇报给本小姐♡</p>
@@ -258,12 +262,15 @@ var A = [
 <p>3.以轻吻表示（前脚掌区、脚中心区、脚后掌区）服侍完成汇报给本小姐♡</p>
 <hr>
 <p><strong>前脚背区：</strong></p>
+<img src="images/photo_2026-08-07_12-36-59.jpg" alt="" style="max-width:100%;border-radius:12px;margin:0 0 24px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.1)">
 <p>1.（粉色）从脚踝处开始，用深吻的方式，一点一点，覆盖整个前脚背区♡</p>
 <p>用舌尖接触轻吻脚背的小部分区域，以顺逆时针各旋转2圈的方式，享受服侍脚背区的欲望与快感♡</p>
 <hr>
 <p><strong>结尾：</strong></p>
 <p>将头置于本小姐的脚下，以表示服侍完成♡</p>
-<p>等候本小姐下一步的命令或者再次请求服侍❤️与请求本小姐进行评价与赏赐❤️</p>`
+<p>等候本小姐下一步的命令或者再次请求服侍❤️与请求本小姐进行评价与赏赐❤️</p>
+<div style="display:flex;gap:12px;margin-bottom:24px;"><img src="images/photo_2026-08-07_12-40-42.jpg" alt="" style="flex:1;max-width:50%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1);"><img src="images/photo_2026-08-07_12-40-45.jpg" alt="" style="flex:1;max-width:50%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1);"></div>
+`
   },
   {
     id: 7,
@@ -343,14 +350,19 @@ var A = [
 <p>如果本小姐没有使用你，那你就一直憋着好了💜期间所有的上贡都会视为白给哦🖤</p>
 <p>对你来说就算白给也会非常爽吧💗毕竟对本小姐的喜欢，想到是为本小姐付出本身就是舒服的来源💗</p>
 <p>那你现在是想要舒服寸止还是为本小姐付出白给呢💘</p>
-<p>选其中一个，或者全部为本小姐报销吧💜</p>`
+<p>选其中一个，或者全部为本小姐报销吧💜</p>
+<img src="images/photo_2026-08-07_12-19-55.jpg" alt="" style="max-width:100%;border-radius:12px;margin:0 0 24px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.1)">
+<p><button onclick="var el=this.nextElementSibling;el.style.display=el.style.display==='none'?'block':'none';this.textContent=el.style.display==='none'?'为大小姐报销💗':'收起💗'" style="background:var(--pk);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:16px;cursor:pointer;display:block;margin:0 auto 16px;font-weight:bold;">为大小姐报销💗</button>
+<img src="images/photo_2026-08-07_12-23-42.jpg" alt="" style="max-width:100%;border-radius:12px;display:none;margin:0 auto 24px;box-shadow:0 4px 16px rgba(0,0,0,.1);"></p>
+`
   },
   {
     id: 9,
     title: '从零开始的锁奴培养手册--第四阶段--特殊篇（高潮重塑）',
     date: '2026-07-03',
     summary: '特殊分支：高潮重塑。从男性射精快感彻底转变为本小姐专属的寸止快感，重新定义高潮体验，成为只为本小姐发情的性工具。',
-    content: `<p><strong>正文：</strong></p>
+    content: `<img src="images/photo_2026-08-07_10-29-52.jpg" alt="" style="max-width:100%;border-radius:12px;margin:0 0 24px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.1)">
+<p><strong>正文：</strong></p>
 <p>“锁奴的终点就是成为本小姐使用的工具”</p>
 
 <p>已经彻底放弃高潮的你，再一次看到可以高潮的机会是一种什么样的心情呢？❤️</p>
@@ -370,6 +382,7 @@ var A = [
 
 <hr>
 
+<div style="display:flex;gap:12px;margin:0 0 24px"><video src="images/IMG_2107.MP4" controls style="width:50%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1)"></video><video src="images/IMG_2108.MP4" controls style="width:50%;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1)"></video></div>
 <h2>重塑方法：</h2>
 
 <p>在达到寸止后</p>
@@ -378,7 +391,8 @@ var A = [
 <p>嘴里不停的对本小姐告白（好喜欢清秋大小姐）</p>
 <p>在脑子里想象高潮画面</p>
 
-<p>如果感到大脑真的有东西释放了（感觉会比较轻微），说明颅内高潮成功了哦，同时身体会感到放松的感觉❤️`</p>
+<p>如果感到大脑真的有东西释放了（感觉会比较轻微），说明颅内高潮成功了哦，同时身体会感到放松的感觉❤️</p>
+`
 
   },
   {
