@@ -219,7 +219,7 @@ function observeAnims(){
   els.forEach(function(el){el.classList.add('anim-fade');animObs.observe(el)})
 }
 
-function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><img class="hero-avatar" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc">'+S.desc+'</div></div><div class="sec-header">关于清秋大小姐</div><div class="sec" style="display:flex;justify-content:center;align-items:center;cursor:default" onclick="event.stopPropagation()"><a class="tribute-btn" href="javascript:void(0)" onclick="event.stopPropagation();go(\'links\')">联系/上贡</a></div><div class="sec-header">清秋大小姐的手册</div><div class="sections">';
+function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><img class="hero-avatar" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc">'+S.desc+'</div></div><div class="sec-header">关于清秋大小姐</div><div class="sec" style="display:flex;flex-direction:column;gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">关于清秋大小姐</div><div style="font-size:13px;color:var(--t2);line-height:1.8">你现在所看到的</div><a class="tribute-btn" href="javascript:void(0)" onclick="event.stopPropagation();go(\'links\')">联系/上贡</a></div><div class="sec-header">清秋大小姐的手册</div><div class="sections">';
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});
 h+='</div>';c.innerHTML=h}
 
