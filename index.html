@@ -219,7 +219,7 @@ function observeAnims(){
   els.forEach(function(el){el.classList.add('anim-fade');animObs.observe(el)})
 }
 
-function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><img class="hero-avatar" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc">'+S.desc+'</div></div><div class="sec-header">关于清秋大小姐</div><div class="sec" style="display:flex;flex-direction:column;gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">关于清秋大小姐</div><div style="font-size:13px;color:var(--t2);line-height:1.8">你现在所看到的</div><a class="tribute-btn" href="javascript:void(0)" onclick="event.stopPropagation();go(\'links\')">联系/上贡</a></div><div class="sec-header">清秋大小姐的手册</div><div class="sections">';
+function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><img class="hero-avatar" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc">'+S.desc+'</div></div><div class="sec-header">关于清秋大小姐</div><div class="sec" style="display:flex;flex-direction:column;gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">关于清秋大小姐</div><div style="font-size:13px;color:var(--t2);line-height:1.8"><p style="margin:0 0 8px">在现实世界我或许与你在表面上都是一样的正常人，我也会用正常人的方式看待你，与你交流</p><p style="margin:0 0 8px">在这里你会看到本小姐脱掉现实衣服，遵从内心本性真实的另一面</p><p style="margin:0">区别在于本小姐对待你的方式将完全不同</p></div><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">清秋大小姐的自述</div><div style="font-size:13px;color:var(--t2);line-height:1.8">你现在所</div><a class="tribute-btn" href="javascript:void(0)" onclick="event.stopPropagation();go(\'links\')">联系/上贡</a></div><div class="sec-header">清秋大小姐的手册</div><div class="sections">';
 S.sections.forEach(function(s,i){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">!</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});
 h+='</div>';c.innerHTML=h}
 
@@ -308,6 +308,7 @@ var bgmPlayBtn=document.getElementById('bgmPlayBtn');
 var bgmIcon=document.getElementById('bgmIcon');
 var bgmPlaying=false;
 var bgmBlocked=false;
+var bgmOverlayShown=false;
 function setPlayState(p){bgmPlaying=p;if(p){bgmIcon.style.stroke='#7EC8E3';bgmPlayBtn.style.animation='spin 3s linear infinite'}else{bgmIcon.style.stroke='#f0b0d8';bgmPlayBtn.style.animation='none'}}
 
 // 不重复随机队列
@@ -324,15 +325,29 @@ function pickBgm(){
   return bgmQueue.pop();
 }
 
-function playBgm(){bgmEl.src=pickBgm();bgmEl.volume=0.4;bgmEl.play().then(function(){setPlayState(true);hideOverlay()}).catch(function(e){setPlayState(false);if(e.name==='NotAllowedError'){showOverlay()}})}
-function randomBgm(){bgmBlocked=false;playBgm()}
+function playBgm(){
+  bgmEl.src=pickBgm();
+  bgmEl.volume=0.4;
+  bgmBlocked=false;
+  bgmEl.play().then(function(){
+    setPlayState(true);hideOverlay();
+  }).catch(function(e){
+    setPlayState(false);
+    if(e.name==='NotAllowedError'){
+      if(!bgmOverlayShown)showOverlay();
+      // 自动切歌被拦截时延迟重试
+      else setTimeout(function(){bgmEl.play().then(function(){setPlayState(true)}).catch(function(){})},500);
+    }
+  });
+}
+function randomBgm(){playBgm()}
 function toggleBgm(){if(bgmPlaying){bgmEl.pause();setPlayState(false)}else{bgmEl.play().then(function(){setPlayState(true)}).catch(function(){})}}
-bgmEl.addEventListener('ended',function(){if(!bgmBlocked)playBgm()});
+bgmEl.addEventListener('ended',function(){playBgm()});
 
 // 浏览器拦截自动播放时显示遮罩
 var overlayEl=null;
 function showOverlay(){
-  bgmBlocked=true;
+  bgmBlocked=true;bgmOverlayShown=true;
   if(overlayEl)return;
   overlayEl=document.createElement('div');
   overlayEl.id='bgmOverlay';
