@@ -5,7 +5,7 @@
 var S = {
   name: '清`秋🎀大小姐',                     // 网站名称
   greeting: '清`秋🎀大小姐',                    // 首页问候语
-  desc: '感谢你来到本小姐的主页。<br>这里主要是本小姐分类存放手册的地方。',  // 首页简介
+  desc: '欢迎来到本小姐的主页<br>本小姐是一个1米58的<span style="color:#2d2d2d;font-weight:700;text-decoration:underline;text-decoration-color:#7EC8E3;text-decoration-thickness:2px;text-underline-offset:3px">小男娘</span>🎀<br>也是一位锁主，对<span style="color:#2d2d2d;font-weight:700;text-decoration:underline;text-decoration-color:#7EC8E3;text-decoration-thickness:2px;text-underline-offset:3px">男性贞操锁与性</span>有深度的研究🔐<br>同时这里也存放了本小姐之前写的<span style="color:#2d2d2d;font-weight:700;text-decoration:underline;text-decoration-color:#7EC8E3;text-decoration-thickness:2px;text-underline-offset:3px">经验手册</span>📖',  // 首页简介
 
   // ===== 首页分区板块 =====
   sections: [
