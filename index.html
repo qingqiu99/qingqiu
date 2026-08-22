@@ -276,7 +276,10 @@ try{render()}catch(e){window.__errs.push('render() 报错: '+e.message+' (行:'+
 </div>
 <script>
 var bgmList=S.bgmList;
-var bgmEl=document.getElementById('bgm');
+// 双缓冲：bgmA 正在播，bgmB 在后台预载下一首，播完瞬间无缝切换（解决切歌空档）
+var bgmA=document.getElementById('bgm');
+var bgmB=document.createElement('audio');bgmB.preload='auto';bgmB.style.display='none';document.body.appendChild(bgmB);
+var bgmCur=bgmA,bgmNext=bgmB;
 var bgmPlayBtn=document.getElementById('bgmPlayBtn');
 var bgmIcon=document.getElementById('bgmIcon');
 var bgmPlaying=false;
@@ -298,24 +301,41 @@ function pickBgm(){
   return bgmQueue.pop();
 }
 
-function playBgm(){
-  bgmEl.src=pickBgm();
-  bgmEl.volume=0.4;
+// 让缓冲元素预载下一首（当前歌播放期间慢慢下载，切歌时已就绪）
+function preloadNext(){
+  bgmNext.src=pickBgm();
+  bgmNext.volume=0.4;
+  bgmNext.load();
+}
+// 播放当前元素；成功播放后立刻预载下一首
+function startCur(){
+  var el=bgmCur;
+  el.volume=0.4;
   bgmBlocked=false;
-  bgmEl.play().then(function(){
-    setPlayState(true);hideOverlay();
+  el.play().then(function(){
+    setPlayState(true);hideOverlay();preloadNext();
   }).catch(function(e){
     setPlayState(false);
     if(e.name==='NotAllowedError'){
       if(!bgmOverlayShown)showOverlay();
       // 自动切歌被拦截时延迟重试
-      else setTimeout(function(){bgmEl.play().then(function(){setPlayState(true)}).catch(function(){})},500);
+      else setTimeout(function(){el.play().then(function(){setPlayState(true);preloadNext()}).catch(function(){})},500);
     }
   });
 }
+// 一首播完：缓冲元素顶上来播放，原元素转为预载角色（零空档）
+function advance(){
+  var old=bgmCur;bgmCur=bgmNext;bgmNext=old;
+  startCur();
+}
+function playBgm(){
+  bgmCur.src=pickBgm();
+  startCur();
+}
 function randomBgm(){playBgm()}
-function toggleBgm(){if(bgmPlaying){bgmEl.pause();setPlayState(false)}else{bgmEl.play().then(function(){setPlayState(true)}).catch(function(){})}}
-bgmEl.addEventListener('ended',function(){playBgm()});
+function toggleBgm(){if(bgmPlaying){bgmCur.pause();setPlayState(false)}else{bgmCur.play().then(function(){setPlayState(true);preloadNext()}).catch(function(){})}}
+bgmA.addEventListener('ended',advance);
+bgmB.addEventListener('ended',advance);
 
 // 浏览器拦截自动播放时显示遮罩
 var overlayEl=null;
