@@ -7,14 +7,25 @@
 <script>
 /* 错误抓取器（必须在所有脚本之前）：任何 JS 错误都会显示在页面底部红条上 */
 window.__errs=[];
+window.onerror=function(msg,url,line,col,err){
+  if(!msg||msg==='Script error.')return; /* 忽略资源加载失败和跨域脱敏 */
+  var m=(msg||'未知错误')+(url?' ['+(url.split('/').pop()||'')+':'+(line||0)+']':'');
+  if(err&&err.stack)m+='\n  ↳ '+(err.stack.split(String.fromCharCode(10))[0]||'');
+  window.__errs.push(m);window.__showErr();
+  return true;
+};
 window.addEventListener('error',function(e){
-  if(!e.message)return; /* 忽略资源加载失败 */
+  if(!e.message)return;
+  if(e.message==='Script error.')return; /* 跨域脱敏的没信息，忽略 */
   var msg=(e.message||'未知错误')+(e.filename?' ['+(e.filename.split('/').pop()||'')+':'+(e.lineno||0)+']':'');
+  if(e.error&&e.error.stack)msg+='\n  ↳ '+(e.error.stack.split(String.fromCharCode(10))[0]||'');
   window.__errs.push(msg);
   window.__showErr();
 },true);
 window.addEventListener('unhandledrejection',function(e){
-  var msg='Promise: '+((e.reason&&e.reason.message)||e.reason);
+  var r=e.reason;
+  var msg='Promise: '+((r&&r.message)||r);
+  if(r&&r.stack)msg+='\n  ↳ '+(r.stack.split(String.fromCharCode(10))[0]||'');
   window.__errs.push(msg);
   window.__showErr();
 });
@@ -23,10 +34,10 @@ window.__showErr=function(){
   if(!d){
     d=document.createElement('div');
     d.id='__err';
-    d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#c0392b;color:#fff;padding:10px 14px;font:13px/1.6 monospace;white-space:pre-wrap;word-break:break-all';
+    d.style.cssText='position:fixed;left:0;right:0;bottom:0;max-height:40vh;overflow:auto;z-index:99999;background:#c0392b;color:#fff;padding:10px 14px;font:12px/1.5 monospace;white-space:pre-wrap;word-break:break-all';
     (document.body||document.documentElement).appendChild(d);
   }
-  d.textContent='⚠ 页面出错：\n'+window.__errs.join('\n');
+  d.textContent='⚠ 页面出错（'+window.__errs.length+'条）：\n'+window.__errs.join('\n');
 };
 </script>
 <style>
@@ -204,11 +215,11 @@ nav{display:none}
 <div class="cap" id="lbc"></div>
 </div>
 
-<script src="data.js?v=20260822a"></script>
+<script src="data.js?v=20260822b" crossorigin="anonymous"></script>
 <script>
 var pg='home',hist=[];
 
-function go(p){hist.push(pg);pg=p;history.pushState({hist:hist.slice(),pg:pg},'','#'+p);updateNav();render();window.scrollTo({top:0,behavior:'instant'})}
+function go(p){try{hist.push(pg);pg=p;history.pushState({hist:hist.slice(),pg:pg},'','#'+p);updateNav();render();window.scrollTo(0,0)}catch(err){window.__errs.push('go('+p+')报错: '+(err&&err.message||err));window.__showErr()}}
 function back(){history.back()}
 function updateNav(){document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home'];a.classList.toggle('ac',ps[i]===pg)});document.getElementById('navLogo').textContent=S.name}
 
@@ -253,7 +264,7 @@ function rAbout(c){var h='<div class="about"><button class="back" onclick="back(
 
 function rManual(c,list,title,key){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>'+title+'</h1><div class="sub">共 '+list.length+' 篇</div><div class="alist">';list.forEach(function(a){h+='<div class="aitem" onclick="viewBy(\''+key+'\','+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewBy(key,id){var a=window[key].find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='view'+key+id;history.pushState({hist:hist.slice(),pg:pg},'','#'+key+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
+function viewBy(key,id){var a=window[key].find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='view'+key+id;history.pushState({hist:hist.slice(),pg:pg},'','#'+key+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo(0,0);requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function rGallery(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>相册</h1><div class="sub">共 '+G.length+' 个相册</div><div class="ggrid">';G.forEach(function(g){h+='<div class="gcard" onclick="viewG('+g.id+')"><img src="'+g.images[0].url+'" alt="'+g.title+'" loading="lazy"><div class="info"><h4>'+g.title+'</h4><p>'+g.date+' &middot; '+g.images.length+' 张</p></div></div>'});h+='</div></div>';c.innerHTML=h}
 
@@ -263,7 +274,7 @@ function openLb(url,cap){document.getElementById('lbi').src=url;document.getElem
 function closeLb(){document.getElementById('lb').classList.remove('op')}
 
 try{history.replaceState({hist:[],pg:'home'},'','#home')}catch(e){window.__errs.push('replaceState: '+e.message);window.__showErr()}
-window.addEventListener('popstate',function(e){var s=e.state;if(s){hist=s.hist;pg=s.pg}else{hist=[];pg='home'}updateNav();render();window.scrollTo({top:0,behavior:'instant'})});
+window.addEventListener('popstate',function(e){var s=e.state;if(s){hist=s.hist;pg=s.pg}else{hist=[];pg='home'}updateNav();render();window.scrollTo(0,0)});
 
 try{render()}catch(e){window.__errs.push('render() 报错: '+e.message+' (行:'+(e.lineNumber||'?')+')');window.__showErr();throw e}
 </script>
