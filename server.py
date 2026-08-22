@@ -9,6 +9,8 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 PORT = 8080
-with socketserver.TCPServer(("", PORT), NoCacheHandler) as httpd:
-    print(f"Serving on port {PORT}")
+# ThreadingTCPServer: 多线程处理并发请求（音频/图片/JS 同时加载不会互相阻塞）
+socketserver.ThreadingTCPServer.allow_reuse_address = True
+with socketserver.ThreadingTCPServer(("", PORT), NoCacheHandler) as httpd:
+    print(f"Serving on port {PORT} (threaded)")
     httpd.serve_forever()

@@ -4,6 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>清`秋🎀大小姐</title>
+<script>
+/* 错误抓取器（必须在所有脚本之前）：任何 JS 错误都会显示在页面底部红条上 */
+window.__errs=[];
+window.addEventListener('error',function(e){
+  if(!e.message)return; /* 忽略资源加载失败 */
+  var msg=(e.message||'未知错误')+(e.filename?' ['+(e.filename.split('/').pop()||'')+':'+(e.lineno||0)+']':'');
+  window.__errs.push(msg);
+  window.__showErr();
+},true);
+window.addEventListener('unhandledrejection',function(e){
+  var msg='Promise: '+((e.reason&&e.reason.message)||e.reason);
+  window.__errs.push(msg);
+  window.__showErr();
+});
+window.__showErr=function(){
+  var d=document.getElementById('__err');
+  if(!d){
+    d=document.createElement('div');
+    d.id='__err';
+    d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#c0392b;color:#fff;padding:10px 14px;font:13px/1.6 monospace;white-space:pre-wrap;word-break:break-all';
+    (document.body||document.documentElement).appendChild(d);
+  }
+  d.textContent='⚠ 页面出错：\n'+window.__errs.join('\n');
+};
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#fff;--t1:#000;--t2:#333;--t3:#999;--bd:#e0e0e0;--pk:#f0b0d8;--mw:780px}
@@ -37,22 +62,14 @@ nav{display:none}
 .hero-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;display:block;margin-bottom:18px;box-shadow:0 4px 16px rgba(240,176,216,.3)}
 .hero .greeting{font-size:34px;font-weight:400;margin-bottom:14px;letter-spacing:1px;line-height:1.3;color:var(--pk)}
 .hero .desc{font-size:15px;color:var(--t2);line-height:1.8}
-.xbtn{display:inline-flex;align-items:center;gap:8px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
-.xbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
+.xbtn,.tgbtn,.adbtn,.livebtn,.ptbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.xbtn:hover,.tgbtn:hover,.adbtn:hover,.livebtn:hover,.ptbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.tgbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
-.tgbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .xicon{width:20px;height:20px;object-fit:contain;display:block}
 .tgicon{width:22px;height:22px;object-fit:contain;display:block}
-.adbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap}
-.adbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .adicon{width:22px;height:22px;object-fit:cover;display:block;border-radius:50%}
 .grd{background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
 .grd-u{background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;text-decoration:underline;text-decoration-color:#7EC8E3;text-decoration-thickness:2px;text-underline-offset:3px}
-.livebtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
-.livebtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
-.ptbtn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:8px 24px;background:#7EC8E3;color:#fff;font-size:14px;font-weight:500;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s}
-.ptbtn:hover{background:var(--pk);animation:shake .3s ease-in-out}
 .liveicon{width:22px;height:22px;object-fit:contain;display:block}
 .pticon{width:22px;height:22px;object-fit:contain;display:block}
 .wavy-line{display:none}
@@ -151,7 +168,6 @@ nav{display:none}
 .hero .greeting{font-size:26px}
 .page,.adetail,.gdetail,.about{padding:32px 0}
 .page h1,.adetail article h1,.gdetail h1,.about h1{font-size:24px}
-.interact-row{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
@@ -188,15 +204,17 @@ nav{display:none}
 <div class="cap" id="lbc"></div>
 </div>
 
-<script src="data.js"></script>
+<script src="data.js?v=20260822a"></script>
 <script>
 var pg='home',hist=[];
 
-function go(p){hist.push(pg);pg=p;history.pushState({idx:hist.length},'','#'+p);updateNav();render();window.scrollTo({top:0,behavior:'instant'})}
-function back(){if(hist.length){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}}
+function go(p){hist.push(pg);pg=p;history.pushState({hist:hist.slice(),pg:pg},'','#'+p);updateNav();render();window.scrollTo({top:0,behavior:'instant'})}
+function back(){history.back()}
 function updateNav(){document.querySelectorAll('.nlinks a').forEach(function(a,i){var ps=['home'];a.classList.toggle('ac',ps[i]===pg)});document.getElementById('navLogo').textContent=S.name}
 
-function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'links':rLinks(c);break;case'advert':rAdvert(c);break;case'about':rAbout(c);break;case'articles':rArticles(c);break;case'books':rBooks(c);break;case'femArticles':rFemArticles(c);break;case'footArticles':rFootArticles(c);break;case'pleasureArticles':rPleasureArticles(c);break;case'gallery':rGallery(c);break}requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
+function rSec(c,page){for(var i=0;i<S.sections.length;i++){if(S.sections[i].page===page){rManual(c,window[S.sections[i].list],S.sections[i].title,S.sections[i].list);return}}}
+
+function render(){var c=document.getElementById('pc');document.getElementById('navLogo').textContent=S.name;switch(pg){case'home':rHome(c);break;case'links':rLinks(c);break;case'advert':rAdvert(c);break;case'about':rAbout(c);break;case'articles':rSec(c,'articles');break;case'books':rBooks(c);break;case'femArticles':rSec(c,'femArticles');break;case'footArticles':rSec(c,'footArticles');break;case'pleasureArticles':rSec(c,'pleasureArticles');break;case'gallery':rGallery(c);break;default:c.innerHTML='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>页面不存在</h1></div>'}requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 var animObs;
 function observeAnims(){
@@ -208,7 +226,7 @@ function observeAnims(){
     Array.from(section.children).forEach(add);
   });
   // Level 3: items inside grid/list containers + article content
-  pc.querySelectorAll('.sections .sec,.alist .aitem,.ggrid .gcard,.gimg .gi,.links-row,.links-section-title,.adbtn,.ct > *,.content > *').forEach(add);
+  pc.querySelectorAll('.sections .sec,.alist .aitem,.ggrid .gcard,.gimg .gi,.links-row,.links-section-title,.adbtn,.tribute-btn,.row1,.row2,.ct > *,.content > *').forEach(add);
   
   animObs=new IntersectionObserver(function(es){
     var batch=[];
@@ -222,81 +240,32 @@ function observeAnims(){
   els.forEach(function(el){el.classList.add('anim-fade');animObs.observe(el)})
 }
 
-function rHome(c){var h='<div class="hero"><div class="hero-title">清`秋🎀大小姐</div><div style="display:flex;align-items:center;gap:18px;justify-content:center"><img class="hero-avatar" style="margin-bottom:0;flex-shrink:0" src="images/photo_2026-02-10_16-08-46.jpg" alt="avatar"><div class="desc" style="text-align:left;flex:1;max-width:430px">'+S.desc+'</div></div><hr style="border:none;border-top:1px solid #7EC8E3;margin:18px 0 0;opacity:.5"></div><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:16px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">与清秋大小姐互动</div><div style="font-size:13px;color:var(--t2);line-height:1.8;margin:8px 0 0">如果你是本小姐的<span class="grd">普通粉丝</span>，本小姐希望你能<span class="grd">积极在X的推文评论区与本小姐保持互动交流</span>，看到评论本小姐基本都会进行回复交流的💗<hr style="border:none;border-top:1px solid #7EC8E3;margin:12px 0;opacity:.5">如果你是本小姐<span class="grd">忠实的粉丝</span>，那么本小姐希望你能<span class="grd">签署</span>下面的<span class="grd">协议</span>，<span class="grd">成为本小姐的广告牌</span>，积极的在评论区互动曝光自己💘</div><a class="adbtn" href="javascript:void(0)" style="margin-top:4px;align-self:center;white-space:normal;text-align:left;line-height:1.3" onclick="event.stopPropagation();go(\'advert\')"><img src="images/hjgjh.jpg" alt="AD" class="adicon" style="width:32px;height:32px"><span style="display:flex;flex-direction:column;align-items:center"><span>推特账号剥夺</span><span>（成为清秋大小姐的广告牌）</span></span></a></div><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:16px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">清秋大小姐的自我介绍</div><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:13px;color:var(--t2);line-height:1.5">这里是本小姐的自我介绍以及自述</div><a class="tribute-btn" href="javascript:void(0)" style="flex-shrink:0;margin-left:12px" onclick="event.stopPropagation();go(\'about\')">关于清秋大小姐与自述</a></div><hr style="border:none;border-top:1px solid #7EC8E3;margin:0;opacity:.5"><div style="font-size:16px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">清秋大小姐的账号与联系方式</div><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:13px;color:var(--t2);line-height:1.5">在这里与本小姐建立互动与链接</div><a class="tribute-btn" href="javascript:void(0)" style="flex-shrink:0;margin-left:12px" onclick="event.stopPropagation();go(\'links\')">与大小姐建立链接</a></div><hr style="border:none;border-top:1px solid #7EC8E3;margin:0;opacity:.5"></div><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:16px;font-weight:600;letter-spacing:1px;text-align:center;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">清秋大小姐的经验手册</div><a class="tribute-btn" href="javascript:void(0)" style="display:block;text-align:center" onclick="event.stopPropagation();go(\'books\')">查看清秋大小姐的全部经验手册</a></div>';
+function rHome(c){var h='<div class="hero"><div class="hero-title">'+S.name+'</div><div style="display:flex;align-items:center;gap:18px;justify-content:center"><img class="hero-avatar" style="margin-bottom:0;flex-shrink:0" src="'+S.home.avatar+'" alt="avatar"><div class="desc" style="text-align:left;flex:1;max-width:430px">'+S.desc+'</div></div><hr style="border:none;border-top:1px solid #7EC8E3;margin:18px 0 0;opacity:.5"></div><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div style="flex:1;min-width:0;text-align:left;font-size:16px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+S.home.interact.title+'</div><a class="tribute-btn" href="javascript:void(0)" style="flex-shrink:0;white-space:nowrap;padding:4px 14px;font-size:12px" onclick="event.stopPropagation();go(\'links\')">'+S.home.linksBtn+'</a></div><div style="font-size:13px;color:var(--t2);line-height:1.8;margin:8px 0 0">'+S.home.interact.desc1+'<hr style=\"border:none;border-top:1px solid #7EC8E3;margin:12px 0;opacity:.5\">'+S.home.interact.desc2+'</div><a class="adbtn" href="javascript:void(0)" style="margin-top:4px;align-self:center;white-space:normal;text-align:left;line-height:1.3" onclick="event.stopPropagation();go(\'advert\')"><img src="images/hjgjh.jpg" alt="AD" class="adicon" style="width:32px;height:32px"><span style="display:flex;flex-direction:column;align-items:center"><span>'+S.home.adBtn1+'</span><span>'+S.home.adBtn2+'</span></span></a></div><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:16px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+S.home.selfIntro.title+'</div><div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:13px;color:var(--t2);line-height:1.5">'+S.home.selfIntro.desc+'</div><a class="tribute-btn" href="javascript:void(0)" style="flex-shrink:0;margin-left:12px" onclick="event.stopPropagation();go(\'about\')">'+S.home.aboutBtn+'</a></div><hr style="border:none;border-top:1px solid #7EC8E3;margin:0;opacity:.5"><div style="font-size:16px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+S.home.account.title+'</div><div style="font-size:13px;color:var(--t2);line-height:1.5">'+S.home.account.desc+'</div><hr style="border:none;border-top:1px solid #7EC8E3;margin:0;opacity:.5"></div><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:16px;font-weight:600;letter-spacing:1px;text-align:center;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+S.home.manualTitle+'</div><a class="tribute-btn" href="javascript:void(0)" style="display:block;text-align:center" onclick="event.stopPropagation();go(\'books\')">'+S.home.manualBtn+'</a></div>';
 h+='</div>';c.innerHTML=h}
 
 function rBooks(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的全部经验手册</h1><div class="sub">共 '+S.sections.length+' 本手册</div><div class="sections" style="margin-bottom:0">';S.sections.forEach(function(s){h+='<div class="sec" onclick="go(\''+s.page+'\')"><div class="row1"><div class="left"><div class="icn">'+s.icon+'</div><div class="st">'+s.title+'</div></div><button class="btn">'+s.link+'</button></div></div>'});h+='</div></div>';c.innerHTML=h}
 
-function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>清秋大小姐的账号</h1><div class="link-card"><div class="links-inner"><div class="links-row"><a class="xbtn" href="https://x.com/qing_qiu9999" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">主账号</a><a class="xbtn" href="https://x.com/findomqingqiu" target="_blank"><img src="images/x-icon.png" alt="X" class="xicon">清秋大小姐Findom🖤</a></div><div class="links-row"><a class="tgbtn" href="https://t.me/+1w3fZ7ySHioxOTA9" target="_blank"><img src="images/tg-icon.png" alt="TG" class="tgicon">清秋大小姐の暖心避风港🩷</a><a class="ptbtn" href="https://www.patreon.com/cw/qingqiu9999" target="_blank"><img src="images/patreon-icon.png" alt="P" class="pticon">Patreon</a><a class="livebtn" href="https://zh.stripchat.com/qingqiu/profile" target="_blank"><img src="images/stripchat.png" alt="Live" class="liveicon">直播间</a></div></div></div></div>';c.innerHTML=h}
+function rLinks(c){var h='<div class="links-page"><button class="back" onclick="back()">\u2190 返回</button><h1>'+S.links.title+'</h1><div class="link-card"><div class="links-inner">';S.links.rows.forEach(function(row){h+='<div class="links-row">';row.forEach(function(b){var ic=b.cls==='xbtn'?'xicon':b.cls==='tgbtn'?'tgicon':b.cls==='ptbtn'?'pticon':b.cls==='livebtn'?'liveicon':'adicon';h+='<a class="'+b.cls+'" href="'+b.url+'" target="_blank"><img src="images/'+b.icon+'" alt="'+b.text+'" class="'+ic+'">'+b.text+'</a>'});h+='</div>'});h+='</div></div></div>';c.innerHTML=h}
 
-function rAdvert(c){
-  var h = `<div class="about"><button class="back" onclick="back()">\u2190 返回</button>
-<h1>推特账号剥夺（成为清秋大小姐的广告牌）</h1>\n<img src="images/photo_2026-08-06_16-33-32.jpg" alt="Advert" style="max-width:100%;border-radius:12px;margin:0 auto 20px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.15)">
-<div class="content">
-<p>又忍不住点进来了吧下贱白给贡奴！！！</p>
-<p>就是喜欢被压迫，喜欢被剥夺金钱，喜欢被射精管理的恶心变态！！！</p>
-<p>既然如此，那就握着肉棒仔仔细细，一字一句的查看以下协议吧</p>
-<p>看到最后根据我的指令签下（贡奴白给射精管理协议）吧！！！</p>
-<p><strong>贡奴白给射精管理协议</strong></p>
-<p>1.我自愿成为清秋女神的下贱白给贡奴，只要发情就必须每天仔细阅读协议，直到完全可以背下来</p>
-<p>2.我自愿发自内心的上交自慰射精的权利，只有向清秋女神吐钱才配得到撸动获取快感的资格</p>
-<p>3.我只有吐钱，才配获取快感（在内心重复或者说出来）<br>
-我只有吐钱，才配获取快感！<br>
-我只有吐钱，才配获取快感！！<br>
-我只有吐钱，才配获取快感！！！</p>
-<p>4.吐钱的金额越高，快感才会越强烈<br>
-吐钱的金额越高，快感才会越强烈！<br>
-吐钱的金额越高，快感才会越强烈！！<br>
-吐钱的金额越高，快感才会越强烈！！！</p>
-<p>5.我只有清空余额，才配射精<br>
-我只有清空余额，才配射精！<br>
-我只有清空余额，才配射精！！<br>
-我只有清空余额，才配射精！！！</p>
-<p>6.我自愿成为被清秋女神忽视的透明贡奴之一，除了上贡白给吐钱以外，不得以任何形式打扰清秋女神！</p>
-<p>7.我自愿佩戴精神和物理两把贞操锁<br>
-（1.佩戴精神贞操锁：在发情期间，不管发情到任何程度，只要没有向清秋女神上贡，就不配自慰获取快感）<br>
-（2.佩戴物理贞操锁：我自愿购买贞操锁并佩戴，并承诺没有向清秋女神上贡，不得以任何方式获取刺激，每次开锁前，必须向清秋女神上贡开锁费，就算开了锁，也必须再次吐钱才配获取快感！）</p>
-<p>8.在白给上贡满5000块后，我自愿放弃用手自慰的低级乐趣，佩戴贞操锁，通过向清秋女神吐钱获取白给上贡的高级快感，沉迷于白给上贡的高级快感中寸止，清空余额锁内流精</p>
-<p>9.我自愿沉迷于白给上贡的高级快感，吐钱寸止，锁内流精才是我最终的归宿</p>
-<p>10.我自愿上交我的一切，成为清秋女神的提款ATM机，发泄工具，人体闹钟......</p>
-<p>看完了吗?贱畜！</p>
-<p>看完的话，那么就请你继续在复习一边，并自慰达到寸止</p>
-<p>然后保存清秋女神的赞赏码，吐钱后点击下面的链接</p>
-<p>授权上交账号后，直到看到自己的主页，才配（射精）知道吗！！！白痴ATM机！！！</p>
-<div style="text-align:center;margin-top:24px"><a class="tribute-btn" href="https://veratm.vercel.app/" target="_blank">点击授权签署</a></div>
-</div></div>`;
-  c.innerHTML = h;
-}
+function rAdvert(c){var h='<div class="about"><button class="back" onclick="back()">\u2190 返回</button><h1>'+S.advert.title+'</h1><img src="'+S.advert.img+'" alt="Advert" style="max-width:100%;border-radius:12px;margin:0 auto 20px;display:block;box-shadow:0 4px 16px rgba(0,0,0,.15)"><div class="content">';S.advert.paras.forEach(function(p){h+='<p>'+p+'</p>'});h+='<div style="text-align:center;margin-top:24px"><a class="tribute-btn" href="'+S.advert.btn.url+'" target="_blank">'+S.advert.btn.text+'</a></div></div></div>';c.innerHTML=h}
 
-function rAbout(c){var h='<div class="about"><button class="back" onclick="back()">\u2190 返回</button><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 12px">关于清秋大小姐</div><div style="font-size:13px;color:var(--t2);line-height:1.8;margin:0 0 24px"><p style="margin:0 0 8px">在现实世界我或许与你在表面上都是一样的正常人，我也会用正常人的方式看待你，与你交流</p><p style="margin:0 0 8px">在这里你会看到本小姐脱掉现实衣服，遵从内心本性真实的另一面</p><p style="margin:0">区别在于本小姐对待你的方式将完全不同</p></div><hr style="border:none;border-top:1px solid #7EC8E3;margin:0;opacity:.5"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 12px">清秋大小姐的自述</div><div class="content" style="font-size:13px;color:var(--t2);line-height:1.8"><p style="margin:0 0 8px">本小姐并不是一个纯正的s和支配者，而是享受你供养与服侍的大小姐</p><p style="margin:0 0 8px">本小姐很大部分的乐趣来自于，喜欢看你在本小姐面前无底线的发情犯贱，尽情的展示你下贱的本性，并因为本小姐越来越下贱</p><p style="margin:0 0 8px">同样也喜欢看你因为本小姐欲求不得，因为欲望而痛苦的样子，本小姐的开心会来源于对你恶趣味的玩弄</p><p style="margin:0 0 8px">有些狗，天生就有奴性，也注定会成为本小姐的仆人（奴），自愿主动的供养与伺候本小姐的方方面面，这并非是精虫上脑的发情冲动，而是本小姐唤醒了你内心深处最真实的自己</p><p style="margin:0">你与本小姐本质上就是同一类人，本小姐享受你的供养与服侍，你同时也在享受供养与伺候本小姐的过程与生活，这既是相互吸引也是本小姐单方面的筛选</p></div></div></div>';c.innerHTML=h}
+function rAbout(c){var h='<div class="about"><button class="back" onclick="back()">\u2190 返回</button><div class="sec" style="gap:12px;cursor:default" onclick="event.stopPropagation()"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 12px">'+S.about.title+'</div><div style="font-size:13px;color:var(--t2);line-height:1.8;margin:0 0 24px">';S.about.intro.forEach(function(p,i){h+='<p style="margin:0 0 '+(i<S.about.intro.length-1?8:0)+'px">'+p+'</p>'});h+='</div><hr style="border:none;border-top:1px solid #7EC8E3;margin:0;opacity:.5"><div style="font-size:15px;font-weight:600;letter-spacing:1px;background:linear-gradient(135deg,#c77dff,#f0b0d8,#7EC8E3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 12px">'+S.about.selfTitle+'</div><div class="content" style="font-size:13px;color:var(--t2);line-height:1.8">';S.about.selfContent.forEach(function(p,i){h+='<p style="margin:0 0 '+(i<S.about.selfContent.length-1?8:0)+'px">'+p+'</p>'});h+='</div></div></div>';c.innerHTML=h}
 
-function rArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的锁奴培养手册</h1><div class="sub">共 '+A.length+' 篇</div><div class="alist">';A.forEach(function(a){h+='<div class="aitem" onclick="viewA('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
+function rManual(c,list,title,key){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>'+title+'</h1><div class="sub">共 '+list.length+' 篇</div><div class="alist">';list.forEach(function(a){h+='<div class="aitem" onclick="viewBy(\''+key+'\','+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewA(id){var a=A.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewA'+id;history.pushState({idx:hist.length},'','#article'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
-
-function rFemArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>从零开始的女性化塑造手册</h1><div class="sub">共 '+W.length+' 篇</div><div class="alist">';W.forEach(function(a){h+='<div class="aitem" onclick="viewW('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
-
-function viewW(id){var a=W.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewW'+id;history.pushState({idx:hist.length},'','#fem'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
-
-function rFootArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>7天足控训练手册</h1><div class="sub">共 '+F.length+' 篇</div><div class="alist">';F.forEach(function(a){h+='<div class="aitem" onclick="viewF('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
-
-function viewF(id){var a=F.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewF'+id;history.pushState({idx:hist.length},'','#foot'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
-
-function rPleasureArticles(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>快感提升指南</h1><div class="sub">共 '+P.length+' 篇</div><div class="alist">';P.forEach(function(a){h+='<div class="aitem" onclick="viewP('+a.id+')">'+a.title+'</div>'});h+='</div></div>';c.innerHTML=h}
-
-function viewP(id){var a=P.find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='viewP'+id;history.pushState({idx:hist.length},'','#pleasure'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
+function viewBy(key,id){var a=window[key].find(function(x){return x.id===id});if(!a)return;hist.push(pg);pg='view'+key+id;history.pushState({hist:hist.slice(),pg:pg},'','#'+key+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');c.innerHTML='<div class="adetail"><button class="back" onclick="back()">\u2190 返回</button><article><h1>'+a.title+'</h1><div class="ct">'+a.content+'</div></article></div>';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function rGallery(c){var h='<div class="page"><button class="back" onclick="back()">\u2190 返回</button><h1>相册</h1><div class="sub">共 '+G.length+' 个相册</div><div class="ggrid">';G.forEach(function(g){h+='<div class="gcard" onclick="viewG('+g.id+')"><img src="'+g.images[0].url+'" alt="'+g.title+'" loading="lazy"><div class="info"><h4>'+g.title+'</h4><p>'+g.date+' &middot; '+g.images.length+' 张</p></div></div>'});h+='</div></div>';c.innerHTML=h}
 
-function viewG(id){var g=G.find(function(x){return x.id===id});if(!g)return;hist.push(pg);pg='viewG'+id;history.pushState({idx:hist.length},'','#gallery'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');var h='<div class="gdetail"><button class="back" onclick="back()">\u2190 返回</button><h1>'+g.title+'</h1><div class="dm">'+g.date+' &middot; '+g.images.length+' 张照片</div><div class="gdesc">'+g.description+'</div><div class="gimg">';g.images.forEach(function(img){h+='<div class="gi" onclick="event.stopPropagation();openLb(\''+img.url+'\',\''+(img.caption||'')+'\')"><img src="'+img.url+'" alt="'+(img.caption||'')+'" loading="lazy"></div>'});h+='</div></div>';c.innerHTML=h;requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
+function viewG(id){var g=G.find(function(x){return x.id===id});if(!g)return;hist.push(pg);pg='viewG'+id;history.pushState({hist:hist.slice(),pg:pg},'','#gallery'+id);document.querySelectorAll('.nlinks a').forEach(function(x){x.classList.remove('ac')});var c=document.getElementById('pc');var h='<div class="gdetail"><button class="back" onclick="back()">\u2190 返回</button><h1>'+g.title+'</h1><div class="dm">'+g.date+' &middot; '+g.images.length+' 张照片</div><div class="gdesc">'+g.description+'</div><div class="gimg">';g.images.forEach(function(img){h+='<div class="gi" onclick="event.stopPropagation();openLb(\''+img.url+'\',\''+(img.caption||'')+'\')"><img src="'+img.url+'" alt="'+(img.caption||'')+'" loading="lazy"></div>'});h+='</div></div>';c.innerHTML=h;requestAnimationFrame(function(){requestAnimationFrame(observeAnims)})}
 
 function openLb(url,cap){document.getElementById('lbi').src=url;document.getElementById('lbc').textContent=cap||'';document.getElementById('lb').classList.add('op')}
 function closeLb(){document.getElementById('lb').classList.remove('op')}
 
-history.replaceState({idx:0},'','#home');
-window.addEventListener('popstate',function(e){if(hist.length>0){pg=hist.pop();updateNav();render();window.scrollTo({top:0,behavior:'instant'})}});
+try{history.replaceState({hist:[],pg:'home'},'','#home')}catch(e){window.__errs.push('replaceState: '+e.message);window.__showErr()}
+window.addEventListener('popstate',function(e){var s=e.state;if(s){hist=s.hist;pg=s.pg}else{hist=[];pg='home'}updateNav();render();window.scrollTo({top:0,behavior:'instant'})});
 
-render();
+try{render()}catch(e){window.__errs.push('render() 报错: '+e.message+' (行:'+(e.lineNumber||'?')+')');window.__showErr();throw e}
 </script>
 <audio id="bgm" preload="auto"></audio>
 <div style="position:fixed;top:16px;right:16px;z-index:999;display:flex;align-items:center;gap:8px">
@@ -306,7 +275,7 @@ render();
 <div id="bgmSwapBtn" onclick="randomBgm()" style="padding:6px 18px;border-radius:50px;background:#7EC8E3;color:#fff;font-size:13px;font-weight:500;letter-spacing:.3px;cursor:pointer;user-select:none;white-space:nowrap;transition:all .2s" onmouseenter="this.style.background='var(--pk)';this.style.animation='shake .3s ease-in-out'" onmouseleave="this.style.background='#7EC8E3';this.style.animation='none'">随机换曲</div>
 </div>
 <script>
-var bgmList=['images/bgm1.m4a','images/bgm2.m4a','images/bgm3.m4a','images/bgm4.m4a','images/bgm5.m4a','images/bgm6.m4a','images/bgm7.m4a','images/bgm8.m4a','images/bgm9.m4a','images/bgm13.m4a','images/bgm14.m4a','images/bgm15.m4a','images/bgm16.m4a','images/bgm17.m4a','images/bgm18.m4a','images/bgm19.m4a'];
+var bgmList=S.bgmList;
 var bgmEl=document.getElementById('bgm');
 var bgmPlayBtn=document.getElementById('bgmPlayBtn');
 var bgmIcon=document.getElementById('bgmIcon');
@@ -367,6 +336,23 @@ function hideOverlay(){
 playBgm();
 
 var styleEl=document.createElement('style');styleEl.textContent='@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}';document.head.appendChild(styleEl);
+</script>
+<script>
+/* 诊断显示屏：1.5 秒后检查内容区域，若为空则显示原因 */
+(function(){
+  setTimeout(function(){
+    var pc=document.getElementById('pc');
+    if(!pc||!pc.innerHTML){
+      var msg;
+      if(typeof S==='undefined'){msg='data.js 没有加载成功（可能被浏览器拦截）'}
+      else if(typeof render==='undefined'){msg='页面脚本没有执行（render 函数不存在）'}
+      else if(window.__errs&&window.__errs.length){msg='render 过程中报错（见上方错误）'}
+      else{msg='内容区域为空，render() 似乎没有被调用'}
+      if(window.__errs)window.__errs.push(msg);else window.__errs=[msg];
+      window.__showErr();
+    }
+  },1500);
+})();
 </script>
 </body>
 </html>
